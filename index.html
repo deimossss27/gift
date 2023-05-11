@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
- * {
+      * {
         text-align: center;
         font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
-          Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+          Arial,
+          sans-serif, Apple Color Emoji, Segoe UI Emoji;
       }
+
       body{
         background: rgb(214, 117, 238);
       }
+
       .topimg {
         margin-top: 30px;
         margin-bottom: 25px;
@@ -25,11 +28,10 @@
         margin: auto;
 
         margin-top: 10px;
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         border-radius: 20px;
       }
-
-      input[type="text"] {
+      input[type="password"] {
         padding: 12px;
         border-radius: 7px;
         border: 1px solid rgb(225, 224, 224);
@@ -58,115 +60,115 @@
         text-align: left;
       }
       .h {
-        padding: 5px;
+        padding: 1px;
       }
-      #links p {
-        width: 90%;
-        margin: auto;
-        font-size: 13px;
-        color: rgb(156, 7, 170);
-        margin-top: 30px;
-        margin-bottom: 40px;
-      }
-      .sppa {
-        color: #fa00fa;
-      }
+
       .label{
         color: rgb(156, 7, 170);
       }
+
+      .sppa {
+        color: rgb(156, 7, 170)b;
+        text-decoration: none;
+      }
       .footer {
         color: rgb(187, 189, 192);
-        margin-top: 0px;
+        margin-top: 20px;
       }
       #login {
         padding: 10px;
+        color: rgba(107, 114, 128);
       }
-      button {
+      .singupbtn {
         background-color: rgb(227, 64, 248);
         width: 85%;
         cursor: pointer;
         padding: 14px;
         border-radius: 7px;
         border: 1px solid rgb(197, 68, 209);
-        color: rgb(0, 0, 0);
+        color: rgb(8, 8, 8);
         font-size: 14px;
         font-weight: 600;
         margin-bottom: 25px;
+        margin-top: 35px;
         transition: all .55 ease;
       }
 
+      .singupbtn:active{
+       opacity: 0.4;
+      }
+
+
+      #google button {
+        padding: 13px;
+        cursor: pointer;
+        border-radius: 7px;
+        width: 85%;
+        background-color: white;
+        border: 1px solid rgb(227, 229, 234);
+        font-weight: 600;
+      }
+      .googpic {
+        width: 5%;
+        margin-right: 20px;
+      }
       button:hover{
         background: transparent;
       }
 
-      button:active{
-        opacity: 0.4;
-      }
     </style>
   </head>
   <body>
-    <img src="" />
     <div id="box">
-      <div class="h"><h2>Sign Up</h2></div>
-      <div>
-        <div class="labe"><label for="name"> Full Name</label></div>
-        <div>
-          <input id="name" type="text" placeholder="Enter your full name" />
-        </div>
-      </div>
+      <div class="h"><h2>Sign In</h2></div>
+
       <div>
         <div class="labe"><label for="email">Email</label></div>
-        <div><input id="email" type="email" placeholder="Enter email" /></div>
+        <div><input id="email" type="email" placeholder="Enter email" required /></div>
       </div>
       <div>
         <div class="labe">
           <label for="password">Password</label>
         </div>
         <div>
-          <input id="password" type="text" placeholder="Enter password" />
+          <input id="password" type="password" placeholder="Enter password" required />
         </div>
       </div>
-
-      <div id="links">
-        <p>
-          <input type="checkbox"> By sigining up, I accept the
-          <span><a class="sppa" href="#">Terms of service</a> </span>and
-          ackowledge the
-          <span><a class="sppa" href="#">Privacy Policy.</a> </span>
-        </p>
+      <button class="singupbtn" onclick="window.location.href='https://deimossss27.github.io/regalo/'">Login</button>
+      <div id="google">
+        <button>
+          <img
+            class="googpic"
+            src="https://sso.masaischool.com/google.svg"
+          />CONTINUE WITH GOOGLE
+        </button>
       </div>
-      <button onclick="window.location.href='https://deimossss27.github.io/topup/'">SIGN UP</button>
       <div id="login">
-        <p class="label"">
-          Already have an account? <a class="sppa" href="login.html">Sign In</a>
+        <p class="label">
+          Don't have an account?
+          <a class="sppa" href = "sign-up.html"'>Sign Up</a>
         </p>
       </div>
     </div>
   </body>
 </html>
 <script>
-  document.querySelector("button").addEventListener("click", storeIt);
-  var arr = JSON.parse(localStorage.getItem("signup")) || [];
-  function storeIt() {
-    event.preventDefault();
-    var nameUser = document.getElementById("email").value;
-    var emailUser = document.getElementById("email").value;
-    var passwordUser = document.getElementById("password").value;
-    var same = JSON.parse(localStorage.getItem("signup")) || [];
-    var userSame = same.filter(function (elem) {
-      return elem.email == emailUser;
+  document.querySelector("button").addEventListener("click", loginFun);
+  function loginFun() {
+    var userArr = JSON.parse(localStorage.getItem("signup")) || [];
+    var emailU = document.getElementById("email").value;
+    var passwordU = document.getElementById("password").value;
+    var temp = userArr.filter(function (elem){
+      return elem.email == emailU && elem.password == passwordU;
+      onclick=window.location.href='window.location.href = "sign-up.html"';
     });
-    if (userSame.length >= 1) {
-      alert("User Already Exist");
+          window.location.href = "sign-up.html";
+    if (temp.length >= 1) {
+      alert("Login Succesfull");
     } else {
-      var obj = {
-        name: nameUser,
-        email: emailUser,
-        password: passwordUser,
-      };
-      arr.push(obj);
-      localStorage.setItem("signup", JSON.stringify(arr));
-      document.getElementById("email").innerText = "";
+      alert("Wrong Credentials");
     }
+      alert("Put something teh")
+
   }
 </script>
